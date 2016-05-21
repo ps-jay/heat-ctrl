@@ -111,7 +111,11 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
                 print "--"
                 print "Current demand: %s" % self.demand
                 print "Current temperature: %s" % room_temp
-                print "Current day: %s; hour: %s" % (day, hour)
+                print "Current date: %s-%s-%s; time: %s:%s; weekday: %s" % (
+                    curr_time.tm_year, curr_time.tm_mon, curr_time.tm_mday,
+                    hour, curr_time.tm_min,
+                    day,
+                )
                 print "Current rate scheme: %s" % rate
                 print "Sunrise is %s; Sunset is %s" % (sunrise, sunset)
                 print "Currently nighttime? %s" % night
