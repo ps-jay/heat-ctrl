@@ -165,4 +165,4 @@ if __name__ == '__main__':
             print "\nException from main()\n"
             print traceback.format_exc()
 
-        time.sleep(180)
+        time.sleep(60)
