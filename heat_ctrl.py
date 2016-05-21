@@ -118,8 +118,8 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
                 print "Currently heater is on? %s" % self.heater_on
 
                 if night:
-                    if rate == "peak":
-                        print "Result: TOGGLE OFF; Reason: peak electricity @ night"
+                    if rate != "offpeak":
+                        print "Result: TOGGLE OFF; Reason: %s electricity @ night" % rate
                         self.heater_on = False
                         continue
                     if room_temp >= MAX_NIGHT_TEMP:
