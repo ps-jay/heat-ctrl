@@ -75,7 +75,7 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
                 sunrise = LOCATION.sunrise()
                 sunset = LOCATION.sunset()
                 e_sr = time.mktime(sunrise.timetuple())  # epoch sunrise
-                e_ss = time.mktime(sunrise.timetuple())  # epoch sunset
+                e_ss = time.mktime(sunset.timetuple())  # epoch sunset
 
                 if e_time < e_sr or e_time > e_ss:
                     # if pre-sunrise or post-sunset, then it is nighttime
@@ -111,7 +111,7 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
                 print "--"
                 print "Current demand: %s" % self.demand
                 print "Current temperature: %s" % room_temp
-                print "Current date: %s-%s-%s; time: %s:%s; weekday: %s" % (
+                print "Current date: %s-%02d-%02d; time: %02d:%02d; weekday: %s" % (
                     curr_time.tm_year, curr_time.tm_mon, curr_time.tm_mday,
                     hour, curr_time.tm_min,
                     day,
