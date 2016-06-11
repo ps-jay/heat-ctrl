@@ -20,10 +20,10 @@ ROOMS = {
         'state': None,
         'state_overriden': None,
         'switch_object': None,
-        'max_day_temp': 24,
-        'min_day_temp': 18,
-        'max_night_temp': 21,
-        'min_night_temp': 18,
+        'max_day_temp': 24,     # switch off when t >= 23.5
+        'min_day_temp': 19,     # switch  on when t <  18.5
+        'max_night_temp': 21,   # switch off when t >= 20.5
+        'min_night_temp': 19,   # switch  on when t <  18.5
     }
 }
 
