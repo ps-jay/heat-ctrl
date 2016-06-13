@@ -138,8 +138,8 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
                         continue
 
                 if rdict['state'] is None:
-                    rdict['state'] = rdict['switch_object'].get_state()
-                elif rdict['state'] != rdict['switch_object'].get_state():
+                    rdict['state'] = rdict['switch_object'].get_state(force_update=True)
+                elif rdict['state'] != rdict['switch_object'].get_state(force_update=True):
                     print "Switch overriden, taking no further action on switch for 4 hours"
                     rdict['state'] = None
                     rdict['state_overriden'] = time.time()
@@ -152,12 +152,12 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
 
                 if night:
                     if room_temp < rdict['min_night_temp']:
-                        print "Result: TOGGLE ON; Reason: room is below %s @ night" % rdict['min_night_temp']
+                        print "Result: ENSURE ON; Reason: room is below %s @ night" % rdict['min_night_temp']
                         rdict['switch_object'].on()
                         rdict['state'] = rdict['switch_object'].get_state()
                         continue
                     if room_temp >= rdict['max_night_temp']:
-                        print "Result: TOGGLE OFF; Reason: room is %s (or hotter) @ night" % rdict['max_night_temp']
+                        print "Result: ENSURE OFF; Reason: room is %s (or hotter) @ night" % rdict['max_night_temp']
                         rdict['switch_object'].off()
                         rdict['state'] = rdict['switch_object'].get_state()
                         continue
@@ -169,22 +169,22 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
 
                 # must be day...
                 if room_temp < rdict['min_day_temp']:
-                    print "Result: TOGGLE ON; Reason: room is below %s @ day" % rdict['min_day_temp']
+                    print "Result: ENSURE ON; Reason: room is below %s @ day" % rdict['min_day_temp']
                     rdict['switch_object'].on()
                     rdict['state'] = rdict['switch_object'].get_state()
                     continue
                 if room_temp >= rdict['max_day_temp']:
-                    print "Result: TOGGLE OFF; Reason: room is %s (or hotter) @ day" % rdict['max_day_temp']
+                    print "Result: ENSURE OFF; Reason: room is %s (or hotter) @ day" % rdict['max_day_temp']
                     rdict['switch_object'].off()
                     rdict['state'] = rdict['switch_object'].get_state()
                     continue
                 if rdict['state'] != 1 and self.demand <= (rdict['heater_kw'] * -1):
-                    print "Result: TOGGLE ON; Reason: heater is off and exporting %skW @ day" % (self.demand * -1)
+                    print "Result: ENSURE ON; Reason: heater is off and exporting %skW @ day" % (self.demand * -1)
                     rdict['switch_object'].on()
                     rdict['state'] = rdict['switch_object'].get_state()
                     continue
                 if self.demand > 0:
-                    print "Result: TOGGLE OFF; Reason: buying %skW @ day" % self.demand
+                    print "Result: ENSURE OFF; Reason: buying %skW @ day" % self.demand
                     rdict['switch_object'].off()
                     rdict['state'] = rdict['switch_object'].get_state()
                     continue
