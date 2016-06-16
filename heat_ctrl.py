@@ -22,8 +22,8 @@ ROOMS = {
         'switch_object': None,
         'max_day_temp': 24,     # switch off when t >= 23.5
         'min_day_temp': 19,     # switch  on when t <  18.5
-        'max_night_temp': 21,   # switch off when t >= 20.5
-        'min_night_temp': 19,   # switch  on when t <  18.5
+        'max_night_temp': 22,   # switch off when t >= 20.5
+        'min_night_temp': 20,   # switch  on when t <  18.5
     }
 }
 
