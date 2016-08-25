@@ -16,7 +16,7 @@ rsync -HPvax --delete ~/.wemo/ <heatctrl_gitroot>/.wemo/
 
 ```
 docker build -t local/heat-ctrl .
-docker run -it -d -m 128m --restart=always --name heat-ctrl local/heat-ctrl  ## yup, -it is needed
+docker run -t -d -m 128m --restart=always --name heat-ctrl local/heat-ctrl  ## yup, -t is needed for unicode characters in stdout
 ```
 
 # Notes
