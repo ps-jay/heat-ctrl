@@ -7,7 +7,7 @@ ENV TZ Australia/Melbourne
 RUN pip install --upgrade \
       pip \
       astral \
-      ouimeaux \
+      ouimeaux==0.7.9 \
       pylint \
       requests \
  && rm -rf /root/.cache/
