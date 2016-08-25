@@ -20,11 +20,21 @@ ROOMS = {
         'state': None,
         'state_overriden': None,
         'switch_object': None,
-        'max_day_temp': 24,     # switch off when t >= 23.5
-        'min_day_temp': 10,     # switch  on when t <   9.5
-        'max_night_temp': 22,   # switch off when t >= 21.5
-        'min_night_temp': 20,   # switch  on when t <  19.5
-    }
+        'max_day_temp': 24,     # switch off when t >= 24
+        'min_day_temp': 17,     # switch  on when t <  17
+        'max_night_temp': 20,   # switch off when t >= 20
+        'min_night_temp': 19,   # switch  on when t <  19
+    },
+    'girlsbed': {
+        'heater_kw': 1.0,
+        'state': None,
+        'state_overriden': None,
+        'switch_object': None,
+        'max_day_temp': 24,     # switch off when t >= 24
+        'min_day_temp': 15,     # switch  on when t <  15
+        'max_night_temp': 19,   # switch off when t >= 18
+        'min_night_temp': 18,   # switch  on when t <  17
+    },
 }
 
 SCHEMES = {
@@ -148,7 +158,7 @@ class HeatCtrl(object):  # pylint: disable=too-few-public-methods
                 print "Current rate scheme: %s" % rate
                 print "Sunrise is %s; Sunset is %s" % (sunrise, sunset)
                 print "Currently nighttime? %s" % night
-                print "Currently heater state is: %s" % rdict['state']
+                print "Currently '%s' heater state is: %s" % (room, rdict['state'],)
 
                 if night:
                     if room_temp < rdict['min_night_temp']:
